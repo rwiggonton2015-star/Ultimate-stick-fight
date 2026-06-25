@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     
     private Rigidbody2D rb;
-    private InputManager inputManager;
     private bool isGrounded;
     private float horizontalInput;
     private bool isFacingRight = true;
@@ -17,32 +16,20 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        inputManager = InputManager.Instance;
-        
-        if (inputManager == null)
-        {
-            Debug.LogError("InputManager not found! Please add it to the scene.");
-        }
     }
 
     private void Update()
     {
-        // Get input from InputManager (handles both desktop and mobile)
-        horizontalInput = inputManager.GetHorizontalInput();
+        // Get input
+        horizontalInput = Input.GetAxis("Horizontal");
         
         // Check if grounded
         isGrounded = Physics2D.OverlapCircle(transform.position + Vector3.down * 0.5f, 0.1f, groundLayer);
         
         // Jump input
-        if (inputManager.GetJumpInput() && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();
-        }
-        
-        // Attack input
-        if (inputManager.GetAttackInput())
-        {
-            Attack();
         }
         
         // Flip sprite based on direction
@@ -61,19 +48,10 @@ public class PlayerController : MonoBehaviour
         rb.drag = isGrounded ? groundDrag : airDrag;
     }
 
-    public void Jump()
+    private void Jump()
     {
-        if (isGrounded)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
-    }
-
-    public void Attack()
-    {
-        Debug.Log("Player attacking!");
-        // Attack logic will be added later
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
     private void Flip()

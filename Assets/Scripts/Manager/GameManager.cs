@@ -18,11 +18,5 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("Game Started!");
-        
-        // Ensure InputManager exists
-        if (InputManager.Instance == null)
-        {
-            Debug.LogWarning("InputManager not found in scene!");
-        }
     }
 }

@@ -15,16 +15,9 @@ A fun 2D side-scrolling game where you fight monsters and upgrade your gear!
 4. Press Play to test
 
 ## Controls
-
-### Desktop
 - **A/D** or **Arrow Keys** - Move left/right
 - **Spacebar** - Jump
 - **Left Click** - Attack
-
-### Mobile
-- **Left/Right Buttons** - Move left/right
-- **Jump Button** - Jump
-- **Attack Button** - Attack
 
 ## Project Structure
 ```
@@ -33,8 +26,6 @@ Assets/
 │   ├── Player/
 │   │   ├── PlayerController.cs
 │   │   └── PlayerAnimator.cs
-│   ├── Input/
-│   │   └── InputManager.cs
 │   ├── Enemy/
 │   │   ├── EnemyController.cs
 │   │   └── EnemyAI.cs
@@ -42,9 +33,7 @@ Assets/
 │       └── GameManager.cs
 ├── Scenes/
 │   └── Main.unity
-├── Prefabs/
-│   ├── Player.prefab
-│   └── Enemy.prefab
-└── UI/
-    └── MobileControls.prefab
+└── Prefabs/
+    ├── Player.prefab
+    └── Enemy.prefab
 ```
